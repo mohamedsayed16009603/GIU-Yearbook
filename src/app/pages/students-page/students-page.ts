@@ -12,6 +12,7 @@ import { Component, OnInit, computed, inject, signal } from '@angular/core';
 
 import { Student } from '../../models/student.model';
 import { StudentService } from '../../services/student.service';
+import { StudentCard } from '../../components/student-card/student-card';
 
 // A type for the sort dropdown. Only these two values are allowed.
 type SortMode = 'featured' | 'name';
@@ -20,6 +21,7 @@ type SortMode = 'featured' | 'name';
   selector: 'app-student-page',
   templateUrl: './students-page.html',
   styleUrl: './students-page.css',
+  imports: [StudentCard],
 })
 export class StudentsPage implements OnInit {
   // Ask Angular for the service. This component never touches

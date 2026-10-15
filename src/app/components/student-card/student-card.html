@@ -1,0 +1,46 @@
+<!-- =====================================================================
+     FILE: components/student-card/student-card.html
+     Student card layout matching Figma "Student card" frame (Lab Step 8).
+     ===================================================================== -->
+
+<a class="card" 
+   [routerLink]="['/students', student().id]" 
+   [attr.aria-label]="'Read the story of ' + student().name">
+
+  <!-- Photo: full width, aspect-ratio 310/246, clipped to top corners -->
+  <img class="card__photo" 
+       [src]="photoSrc()" 
+       [alt]="'Portrait of ' + student().name" 
+       loading="lazy"
+       (error)="onImageError()">
+
+  <!-- Body: flex column, gap handled by CSS -->
+  <div class="card__body">
+
+    <!-- Heading row: name + arrow side by side -->
+    <div class="card__heading">
+      <h3 class="card__name">{{ student().name }}</h3>
+      
+      <!-- Arrow: inline SVG, red via CSS, hidden from screen readers -->
+      <svg class="card__arrow" 
+           viewBox="0 0 24 24" 
+           fill="none" 
+           stroke="currentColor" 
+           stroke-width="1.6" 
+           stroke-linecap="round" 
+           stroke-linejoin="round" 
+           aria-hidden="true">
+        <path d="M7 17 17 7M8 7h9v9" />
+      </svg>
+    </div>
+
+    <!-- Meta line: faculty · Class of 2028 -->
+    <p class="card__meta">
+      {{ student().faculty }} · Class of {{ student().classYear }}
+    </p>
+
+    <!-- Quote: inside curly quotes -->
+    <p class="card__quote">“{{ student().quote }}”</p>
+
+  </div>
+</a>
